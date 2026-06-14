@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { listOfEmployees } from "../services/EmployeeService";
+import { listOfEmployees, deleteEmployee } from "../services/EmployeeService";
 import { useNavigate } from "react-router-dom";
 
 const ListEmployeeComponent = () => {
@@ -8,6 +8,10 @@ const ListEmployeeComponent = () => {
   const navigator = useNavigate();
 
   useEffect(() => {
+    listAllEmployees();
+  }, []);
+
+  function listAllEmployees() {
     listOfEmployees()
       .then((response) => {
         setEmployees(response.data);
@@ -16,13 +20,25 @@ const ListEmployeeComponent = () => {
       .catch((error) => {
         console.log(error);
       });
-  }, []);
+  }
 
   function handleAddEmployee() {
     navigator("/add-employee");
   }
   function updateEmplyoee(id) {
     navigator(`/edit-employee/${id}`);
+  }
+
+  function removeEmployee(id) {
+    deleteEmployee(id)
+      .then((response) => {
+        //console.log(response.data);
+        listAllEmployees();
+        // navigator("/employees");
+      })
+      .catch((error) => {
+        console.error(error);
+      });
   }
   return (
     <div className="container">
@@ -48,14 +64,19 @@ const ListEmployeeComponent = () => {
               <td>{employee.lastName}</td>
               <td>{employee.email}</td>
               <td>
-                {
-                  <button
-                    className="btn btn-info"
-                    onClick={() => updateEmplyoee(employee.empId)}
-                  >
-                    Update
-                  </button>
-                }
+                <button
+                  className="btn btn-info"
+                  onClick={() => updateEmplyoee(employee.empId)}
+                >
+                  Update
+                </button>
+                <button
+                  className="btn btn-danger"
+                  onClick={() => removeEmployee(employee.empId)}
+                  style={{ marginLeft: "10px" }}
+                >
+                  Delete
+                </button>
               </td>
             </tr>
           ))}
