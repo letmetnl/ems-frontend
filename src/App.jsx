@@ -9,14 +9,20 @@ function App() {
     <>
       <BrowserRouter>
         <HeaderComponent />
-        <Routes>
-          {/* //Route for base url : http://localhost:8080/ */}
-          <Route path="/" element={<ListEmployeeComponent />}></Route>
-          {/* // Route for /employees */}
-          <Route path="/employees" element={<ListEmployeeComponent />}></Route>
-          {/* // Route for add employee: http://localhost:3000/add-employee */}
-          <Route path="/add-employee" element={<EmployeeComponent />}></Route>
-        </Routes>
+        {/* //wrapping routes in the main container tag */}
+        <main className="main-content">
+          <Routes>
+            {/* //Route for base url : http://localhost:8080/ */}
+            <Route path="/" element={<ListEmployeeComponent />}></Route>
+            {/* // Route for /employees */}
+            <Route
+              path="/employees"
+              element={<ListEmployeeComponent />}
+            ></Route>
+            {/* // Route for add employee: http://localhost:3000/add-employee */}
+            <Route path="/add-employee" element={<EmployeeComponent />}></Route>
+          </Routes>
+        </main>
         <FooterComponent />
       </BrowserRouter>
     </>

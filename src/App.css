@@ -1,8 +1,19 @@
+/* This forces the middle section to stretch and fill all empty space */
+.main-content {
+  flex: 1 0 auto;
+  padding: 20px; /* Optional: adds breathing room around your forms */
+}
+
+/* Clean, modern footer with NO absolute positioning hacks */
 .footer {
-  position: absolute;
-  bottom: 0;
-  background-color: blue;
+  background-color: #0d6efd;
   text-align: center;
   width: 100%;
   height: 50px;
+
+  /* Centers your text inside the blue footer box */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
 }

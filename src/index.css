@@ -1,0 +1,14 @@
+/* Target the browser window defaults */
+html,
+body {
+  margin: 0;
+  padding: 0;
+  height: 100%; /* Tells the browser to use full space */
+}
+
+/* Target the React entry point container */
+#root {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh; /* Forces the app to take up the full screen height */
+}
